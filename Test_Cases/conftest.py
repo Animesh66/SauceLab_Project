@@ -41,6 +41,7 @@ def log_on_failure(request, get_browser):
 def get_browser(request):
     sauce_url = "https://oauth-animesh5678-8230c:9bdf2d99-49a6-4098-ae67-831f601b4b2f@ondemand.eu-central-1.saucelabs.com:443/wd/hub"
     desired_cap = {}
+    desired_cap['name'] = 'Demo Web Shop Test'
     if request.param == "chrome":
         desired_cap['browserName'] = 'chrome'
         desired_cap['platform'] = 'Windows 10'
