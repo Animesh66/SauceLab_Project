@@ -37,19 +37,19 @@ def log_on_failure(request, get_browser):
 #     yield driver
 #     driver.quit()
 
-@pytest.fixture(params=["firefox", "chrome", ], scope="function")
+@pytest.fixture(params=["firefox", "chrome"], scope="function")
 def get_browser(request):
     sauce_url = "https://oauth-animesh5678-8230c:9bdf2d99-49a6-4098-ae67-831f601b4b2f@ondemand.eu-central-1.saucelabs.com:443/wd/hub"
     desired_cap = {}
     if request.param == "chrome":
         desired_cap['browserName'] = 'chrome'
         desired_cap['platform'] = 'Windows 10'
-        desired_cap['version'] = '96'
+        desired_cap['version'] = 'latest'
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     elif request.param == "firefox":
         desired_cap['browserName'] = 'firefox'
         desired_cap['platform'] = 'Windows 10'
-        desired_cap['version'] = '95'
+        desired_cap['version'] = 'latest'
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     request.cls.driver = driver
     driver.get(configuration_reader("basic configuration", "test_url"))
