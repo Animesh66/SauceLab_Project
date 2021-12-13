@@ -44,13 +44,13 @@ def get_browser(request):
     desired_cap['name'] = 'Dem_Web_Shop_Test'
     if request.param == "chrome":
         desired_cap['browserName'] = 'chrome'
-        desired_cap['platform'] = 'Windows 10'
-        desired_cap['version'] = 'latest'
+        desired_cap['platformName'] = 'Windows 10'
+        desired_cap['browserVersion'] = 'latest'
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     elif request.param == "firefox":
         desired_cap['browserName'] = 'firefox'
-        desired_cap['platform'] = 'Windows 10'
-        desired_cap['version'] = 'latest'
+        desired_cap['platformName'] = 'Windows 10'
+        desired_cap['browserVersion'] = 'latest'
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     request.cls.driver = driver
     driver.get(configuration_reader("basic configuration", "test_url"))
