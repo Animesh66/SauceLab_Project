@@ -25,19 +25,6 @@ def log_on_failure(request, get_browser):
         allure.attach(driver.get_screenshot_as_png(), name="do_login", attachment_type=AttachmentType.PNG)
 
 
-# @pytest.fixture(params=["firefox", "chrome", ], scope="function")
-# def get_browser(request):
-#     if request.param == "chrome":
-#         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-#     if request.param == "firefox":
-#         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-#     request.cls.driver = driver
-#     driver.get(configuration_reader("basic configuration", "test_url"))
-#     driver.maximize_window()
-#     driver.implicitly_wait(10)
-#     yield driver
-#     driver.quit()
-
 @pytest.fixture(params=["firefox", "chrome"], scope="function")
 def get_browser(request):
     user_name = os.getenv("SAUCE_USERNAME")
