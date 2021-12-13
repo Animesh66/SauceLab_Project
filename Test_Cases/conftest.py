@@ -41,13 +41,14 @@ def log_on_failure(request, get_browser):
 def get_browser(request):
     sauce_url = "https://oauth-animesh5678-8230c:9bdf2d99-49a6-4098-ae67-831f601b4b2f@ondemand.eu-central-1.saucelabs.com:443/wd/hub"
     desired_cap = {}
-    desired_cap['name'] = 'Dem_Web_Shop_Test'
     if request.param == "chrome":
+        desired_cap['name'] = 'TC_Chrome_Demo_Webshop_Test'
         desired_cap['browserName'] = 'chrome'
         desired_cap['platformName'] = 'Windows 10'
         desired_cap['browserVersion'] = 'latest'
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     elif request.param == "firefox":
+        desired_cap['name'] = 'TC_Chrome_Demo_Webshop_Test'
         desired_cap['browserName'] = 'firefox'
         desired_cap['platformName'] = 'Windows 10'
         desired_cap['browserVersion'] = 'latest'
