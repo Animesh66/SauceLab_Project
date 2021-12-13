@@ -41,22 +41,25 @@ def log_on_failure(request, get_browser):
 def get_browser(request):
     sauce_url = "https://oauth-animesh5678-8230c:9bdf2d99-49a6-4098-ae67-831f601b4b2f@ondemand.eu-central-1.saucelabs.com:443/wd/hub"
     desired_cap = {}
+    sauce_options = {
+        'platformName': 'Windows 10',
+        'browserVersion': 'latest',
+        'name': request.node.name,
+        'capturePerformance': True,
+        'extendedDebugging': True
+    }
     if request.param == "chrome":
-        desired_cap['name'] = 'TC_Chrome_Demo_Webshop_Test'
         desired_cap['browserName'] = 'chrome'
-        desired_cap['platformName'] = 'Windows 10'
-        desired_cap['browserVersion'] = 'latest'
+        desired_cap['sauce:options'] = sauce_options
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     elif request.param == "firefox":
-        desired_cap['name'] = 'TC_Chrome_Demo_Webshop_Test'
         desired_cap['browserName'] = 'firefox'
-        desired_cap['platformName'] = 'Windows 10'
-        desired_cap['browserVersion'] = 'latest'
+        desired_cap['sauce:options'] = sauce_options
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     request.cls.driver = driver
     driver.get(configuration_reader("basic configuration", "test_url"))
     driver.implicitly_wait(10)
     driver.maximize_window()
     yield driver
+    driver.execute_script("sauce:job-result=passed")
     driver.quit()
-
