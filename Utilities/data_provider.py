@@ -4,7 +4,7 @@ from Utilities.utils_config_reader import configuration_reader
 
 def get_data(sheet_name):
     workbook = openpyxl.load_workbook(configuration_reader("basic configuration", "data_path"))
-    sheet = workbook[configuration_reader("basic configuration", sheet_name)]
+    sheet = workbook[sheet_name]
     total_rows = sheet.max_row
     total_cols = sheet.max_column
     main_list = []
