@@ -32,18 +32,20 @@ def get_browser(request):
     sauce_url = "https://{}:{}@ondemand.eu-central-1.saucelabs.com:443/wd/hub".format(user_name, access_key)
     desired_cap = {}
     sauce_options = {
-        'platformName': 'Windows 10',
-        'browserVersion': 'latest',
         'name': request.node.name,
         'capturePerformance': True,
         'extendedDebugging': True
     }
     if request.param == "chrome":
         desired_cap['browserName'] = 'chrome'
+        desired_cap['platformName'] = 'Windows 10'
+        desired_cap['browserVersion'] = 'latest'
         desired_cap['sauce:options'] = sauce_options
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     elif request.param == "firefox":
         desired_cap['browserName'] = 'firefox'
+        desired_cap['platformName'] = 'Windows 10'
+        desired_cap['browserVersion'] = 'latest'
         desired_cap['sauce:options'] = sauce_options
         driver = webdriver.Remote(sauce_url, desired_capabilities=desired_cap)
     request.cls.driver = driver
