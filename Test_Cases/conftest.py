@@ -40,10 +40,9 @@ def log_on_failure(request, get_browser):
 
 @pytest.fixture(params=["firefox", "chrome"], scope="function")
 def get_browser(request):
-    # user_name = os.getenv("SAUCE_USERNAME")
-    # access_key = os.getenv("SAUCE_ACCESS_KEY")
-    # sauce_url = "https://{}:{}@ondemand.eu-central-1.saucelabs.com:443/wd/hub".format(user_name, access_key)
-    sauce_url = "https://oauth-animesh5678-8230c:9bdf2d99-49a6-4098-ae67-831f601b4b2f@ondemand.eu-central-1.saucelabs.com:443/wd/hub"
+    user_name = os.getenv("SAUCE_USERNAME")
+    access_key = os.getenv("SAUCE_ACCESS_KEY")
+    sauce_url = "https://{}:{}@ondemand.eu-central-1.saucelabs.com:443/wd/hub".format(user_name, access_key)
     desired_cap = {}
     sauce_options = {
         'platformName': 'Windows 10',
