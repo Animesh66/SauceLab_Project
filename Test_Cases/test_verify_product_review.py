@@ -6,6 +6,7 @@ from Utilities.data_provider import get_data
 
 class TestVerifyProductReview(BaseTest):
 
+    @pytest.mark.verify_product
     @pytest.mark.parametrize("email, password, created_from_date, created_to_date", get_data("verify_product"))
     def test_verify_product_review(self, email, password, created_from_date, created_to_date):
         login = LoginPage(self.driver)
